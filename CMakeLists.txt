@@ -59,7 +59,7 @@ add_library(urcl SHARED
 )
 add_library(ur_client_library::urcl ALIAS urcl)
 target_compile_options(urcl PRIVATE -Wall -Wextra -Wno-unused-parameter)
-target_compile_options(urcl PUBLIC ${CXX17_FLAG})
+target_compile_options(urcl PRIVATE ${CXX17_FLAG})
 if(WITH_ASAN)
   target_compile_options(urcl PUBLIC -fsanitize=address)
   target_link_options(urcl PUBLIC -fsanitize=address)
