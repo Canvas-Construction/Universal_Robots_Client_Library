@@ -21,7 +21,7 @@
  */
 
 #include <arpa/inet.h>
-#include <endian.h>
+#include "ur_client_library/endian.h"
 #include <netinet/tcp.h>
 #include <unistd.h>
 #include <chrono>
@@ -48,7 +48,10 @@ void TCPSocket::setupOptions()
 {
   int flag = 1;
   setsockopt(socket_fd_, IPPROTO_TCP, TCP_NODELAY, &flag, sizeof(int));
+
+#ifdef __linux__
   setsockopt(socket_fd_, IPPROTO_TCP, TCP_QUICKACK, &flag, sizeof(int));
+#endif
 
   if (recv_timeout_ != nullptr)
   {
