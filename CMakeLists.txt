@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(ur_client_library)
+project(urcl)
 
 #set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules/" ${CMAKE_MODULE_PATH})
 
@@ -57,7 +57,7 @@ add_library(urcl SHARED
     src/log.cpp
     src/helpers.cpp
 )
-add_library(ur_client_library::urcl ALIAS urcl)
+add_library(urcl::urcl ALIAS urcl)
 target_compile_options(urcl PRIVATE -Wall -Wextra -Wno-unused-parameter)
 #target_compile_options(urcl PRIVATE ${CXX17_FLAG})
 target_compile_features(urcl PRIVATE cxx_std_20)
@@ -100,9 +100,9 @@ install(TARGETS urcl EXPORT urcl_targets
 install(DIRECTORY include/ DESTINATION include)
 
 install(EXPORT urcl_targets
-  DESTINATION lib/cmake/ur_client_library
+  DESTINATION share/urcl
   FILE urclTargets.cmake
-  NAMESPACE ur_client_library::)
+  NAMESPACE urcl::)
 
 # if(CATKIN_PACKAGE_BIN_DESTINATION)
 #   install(PROGRAMS scripts/start_ursim.sh
@@ -115,10 +115,10 @@ install(EXPORT urcl_targets
 # endif()
 
 include(CMakePackageConfigHelpers)
-write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/ur_client_libraryConfigVersion.cmake VERSION 0.0.3
+write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/urclConfigVersion.cmake VERSION 0.0.3
   COMPATIBILITY SameMajorVersion)
-install(FILES ur_client_libraryConfig.cmake
-  DESTINATION lib/cmake/ur_client_library)
+install(FILES urclConfig.cmake
+  DESTINATION share/urcl)
 
 # Install package.xml file so this package can be processed by ROS toolings
 # See REP 136 for details
