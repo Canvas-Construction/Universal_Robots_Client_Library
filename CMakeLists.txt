@@ -118,7 +118,7 @@ include(CMakePackageConfigHelpers)
 write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/ur_client_libraryConfigVersion.cmake VERSION 0.0.3
   COMPATIBILITY SameMajorVersion)
 install(FILES ur_client_libraryConfig.cmake
-  DESTINATION share/ur_client_library)
+  DESTINATION lib/cmake/ur_client_library)
 
 # Install package.xml file so this package can be processed by ROS toolings
 # See REP 136 for details
@@ -141,4 +141,4 @@ install(FILES ur_client_libraryConfig.cmake
 # install(FILES ${CMAKE_CURRENT_BINARY_DIR}/share/${PROJECT_NAME}/hook/ros_package_path.dsv DESTINATION share/${PROJECT_NAME}/hook)
 #### End iport ####
 
-install(DIRECTORY resources DESTINATION share/${PROJECT_NAME})
+#install(DIRECTORY resources DESTINATION share/${PROJECT_NAME})
